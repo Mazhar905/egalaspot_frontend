@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/modules/layout/templates/nav/bottomBar.jsx", "src/modules/layout/templates/nav/TopBar.tsx"  ],
   "exclude": [
     "node_modules",
     ".next",
