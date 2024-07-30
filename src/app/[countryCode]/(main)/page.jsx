@@ -94,14 +94,14 @@ export default async function Home({ params: { countryCode } }) {
           Top Categories
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {/* {categories.slice(0, 8).map((category) => (
+          {categories.slice(0, 8).map((category) => (
             <CategoryBox
               key={category.name}
               image={category.image}
               name={category.name}
               link={`/categories/${category.link}`}
             />
-          ))} */}
+          ))}
         </div>
         <div className="flex justify-center mt-8">
           <InteractiveLink href="/category">
