@@ -31,7 +31,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-, "src/modules/layout/templates/nav/bottomBar.jsx", "src/modules/layout/templates/nav/TopBar.tsx"  ],
+, "src/modules/layout/templates/nav/bottomBar.jsx", "src/modules/layout/templates/nav/TopBar.tsx", "src/modules/home/components/featured-products/product-rail/index.jsx", "src/modules/home/components/hero/index.jsx", "src/modules/home/components/categoryBox/index.jsx", "src/modules/products/components/product-preview/index.ssx", "src/app/[countryCode]/(main)/page.jsx"  ],
   "exclude": [
     "node_modules",
     ".next",

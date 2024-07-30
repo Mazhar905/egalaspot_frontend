@@ -58,7 +58,6 @@ export default function SearchModal() {
     <InstantSearch
       indexName={SEARCH_INDEX_NAME}
       searchClient={searchClient}
-      ref={searchRef}
     >
       <div
         className="flex h-full items-center px-10 w-full"
