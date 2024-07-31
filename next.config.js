@@ -28,6 +28,7 @@ const nextConfig = withStoreConfig({
       {
         protocol: "https",
         hostname: "www.alphabroder.com",
+        pathname: "/media/**",
       },
     ],
   },

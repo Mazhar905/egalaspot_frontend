@@ -34,11 +34,11 @@ export default async function Nav() {
                 className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
                 data-testid="nav-store-link"
               >
-                <Image src={logo} alt="logo" className="md:w-[170px] w-36" />
+                <Image src={logo} alt="logo" className="md:w-[170px] w-36" width={170} height={80} />
               </LocalizedClientLink>
             </div>
             <div className="flex items-center h-full mx-auto w-[60%] justify-center">
-              <SearchModal />
+              {/* <SearchModal /> */}
             </div>
             <div className="flex items-center gap-x-4 h-full px-5 w-[20%] justify-end">
               <div className="hidden small:flex items-center gap-x-6 h-full">

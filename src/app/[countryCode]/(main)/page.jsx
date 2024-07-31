@@ -12,7 +12,6 @@ import InteractiveLink from "@modules/common/components/interactive-link"
 import CollectionGrid from "@modules/common/components/collectionGrid"
 import CategoryBox from "@modules/home/components/categoryBox"
 import ProductGrid from "@modules/common/components/productGrid"
-
 export const metadata = {
   title: "EgalaSpot",
   description: "EgalaSpot Ecommerce Store.",
@@ -82,14 +81,14 @@ export default async function Home({ params: { countryCode } }) {
   return (
     <>
       <Hero />
-      {/* <CollectionGrid
+      <CollectionGrid
         itemsPerRow={4}
         limit={8}
         title="Latest Products"
         collections={collections}
         region={region}
-      /> */}
-      <div className="container mx-auto px-4 py-8">
+      />
+      <div className="container mx-auto px-4 py-8 bg-gray-200">
         <h2 className="text-center text-3xl font-light tracking-wider hover:underline mb-8">
           Top Categories
         </h2>
@@ -112,7 +111,7 @@ export default async function Home({ params: { countryCode } }) {
       <CollectionGrid
         itemsPerRow={4}
         limit={8}
-        title="Best Seller"
+        title="Best Sellers"
         collections={collections}
         region={region}
       />

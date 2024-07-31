@@ -1,4 +1,5 @@
 import ProductRail from "@modules/home/components/featured-products/product-rail"
+import { fileURLToPath } from "url"
 
 export default async function CollectionGrid({
   title,
@@ -11,19 +12,16 @@ export default async function CollectionGrid({
   const filteredCollections = collections.filter(
     (collection) => collection.title === title
   )
-
-  // Optionally limit the number of items to `limit` if provided
-  const limitedCollections = limit
-    ? filteredCollections.slice(0, limit)
-    : filteredCollections
+  console.log(filteredCollections)
 
   return (
     <>
-      {limitedCollections.map((collection) => (
+      {filteredCollections.map((collection) => (
         <ProductRail
           key={collection.id}
           collection={collection}
           region={region}
+          limit={limit}
           itemsPerRow={itemsPerRow}
         />
       ))}

@@ -1,13 +1,16 @@
+/* eslint-disable @next/next/no-img-element */
 import { Image as MedusaImage } from "@medusajs/medusa"
 import { Container, clx } from "@medusajs/ui"
 import Image from "next/image"
 import React from "react"
 
 import PlaceholderImage from "@modules/common/icons/placeholder-image"
+import Link from "next/link"
 
 type ThumbnailProps = {
   thumbnail?: string | null
   images?: MedusaImage[] | null
+  link?: string
   size?: "small" | "medium" | "large" | "full" | "square"
   isFeatured?: boolean
   className?: string
@@ -17,6 +20,7 @@ type ThumbnailProps = {
 const Thumbnail: React.FC<ThumbnailProps> = ({
   thumbnail,
   images,
+  link,
   size = "small",
   isFeatured,
   className,
@@ -25,9 +29,9 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   const initialImage = thumbnail || images?.[0]?.url
 
   return (
-    <Container
+    <div
       className={clx(
-        "relative w-full overflow-hidden p-4 bg-ui-bg-subtle border-b shadow-elevation-card-rest group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150",
+        "relative w-full overflow-hidden bg-ui-bg-subtle border-b shadow-elevation-card-rest group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150 ",
         className,
         {
           "aspect-[1/1]": !isFeatured && size !== "square",
@@ -39,8 +43,10 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
       )}
       data-testid={dataTestid}
     >
-      <ImageOrPlaceholder image={initialImage} size={size} />
-    </Container>
+      <Link href={link}>
+        <ImageOrPlaceholder image={initialImage} size={size} />
+      </Link>
+    </div>
   )
 }
 
@@ -49,15 +55,19 @@ const ImageOrPlaceholder = ({
   size,
 }: Pick<ThumbnailProps, "size"> & { image?: string }) => {
   return image ? (
-    <Image
-      src={image}
-      alt="Thumbnail"
-      className="absolute inset-0 object-cover object-center"
-      draggable={false}
-      quality={50}
-      sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
-      fill
-    />
+    <>
+      <img src={image} alt="Thumbnail" className="w-full h-full" />
+
+      {/* <Image
+        src={image}
+        alt="Thumbnail"
+        className="absolute inset-0 object-cover object-center"
+        draggable={false}
+        quality={50}
+        sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
+        fill
+      /> */}
+    </>
   ) : (
     <div className="w-full h-full absolute inset-0 flex items-center justify-center">
       <PlaceholderImage size={size === "small" ? 16 : 24} />
