@@ -12,6 +12,9 @@ import InteractiveLink from "@modules/common/components/interactive-link"
 import CollectionGrid from "@modules/common/components/collectionGrid"
 import CategoryBox from "@modules/home/components/categoryBox"
 import ProductGrid from "@modules/common/components/productGrid"
+import image1 from "../../../../public/bg-img/banner_minipage1.jpg"
+import image2 from "../../../../public/bg-img/banner_minipage2.jpg"
+import image3 from "../../../../public/bg-img/banner_minipage3.jpg"
 export const metadata = {
   title: "EgalaSpot",
   description: "EgalaSpot Ecommerce Store.",
@@ -62,16 +65,7 @@ export default async function Home({ params: { countryCode } }) {
     return null
   }
 
-  const images = [
-    "/bg-img/curly_hair_girl-1_mobile.jpg",
-    "/bg-img/banner_minipage3.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-    "/bg-img/banner_minipage1-tablet.jpg",
-  ]
+  const images = [image1, image2, image3]
   const categories = product_categories.map((category) => ({
     id: category.id,
     name: category.name,

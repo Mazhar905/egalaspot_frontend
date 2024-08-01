@@ -1,3 +1,5 @@
+"use client"
+import { Text } from "@medusajs/ui"
 import React, { useState, FormEvent } from "react"
 import { FaEnvelope } from "react-icons/fa"
 
@@ -25,17 +27,14 @@ const SubscribeForm = () => {
 
   return (
     <div>
-      <h4 className="text-lg font-semibold mb-6 text-white">
-        Subscribe Our Newsletter
-      </h4>
-      <p className="text-sm text-gray-400 mt-6">
+      <p className="text-xs text-gray-600 font-normal">
         Subscribe to our newsletter and stay up to date with the latest news,
         updates, and exclusive offers. Get valuable insights. Join our community
         today!
       </p>
       <form
         onSubmit={handleSubmit}
-        className="max-w-lg mx-auto bg-gray-100 flex items-center mt-10 rounded-full px-1 py-1 border focus-within:border-gray-700"
+        className="max-w-lg mx-auto bg-gray-100 flex items-center mt-5 rounded-full px-1 py-1 border focus-within:border-gray-700"
       >
         <FaEnvelope className="text-gray-500 ml-3" />
         <input
