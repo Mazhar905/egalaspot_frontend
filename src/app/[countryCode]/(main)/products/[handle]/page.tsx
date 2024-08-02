@@ -84,23 +84,21 @@ const getPricedProductByHandle = async (handle: string, region: Region) => {
 }
 
 export default async function ProductPage({ params }: Props) {
-  const region = await getRegion(params.countryCode)
+  console.log("hwllo world")
 
-  if (!region) {
-    notFound()
-  }
+  // const region = await getRegion(params.countryCode)
 
-  const pricedProduct = await getPricedProductByHandle(params.handle, region)
+  // if (!region) {
+  //   notFound()
+  // }
+  // const pricedProduct = await getPricedProductByHandle(params.handle, region)
 
-  if (!pricedProduct) {
-    notFound()
-  }
+  // if (!pricedProduct) {
+  //   notFound()
+  // }
 
   return (
-    <ProductTemplate
-      product={pricedProduct}
-      region={region}
-      countryCode={params.countryCode}
-    />
+    // <ProductTemplate product={pricedProduct} region={region} countryCode={params.countryCode}/>
+    <h2>Helwo worki</h2>
   )
 }

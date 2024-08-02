@@ -58,7 +58,7 @@ export default async function ProductPreview({
         <div className="flex justify-start gap-x-2  px-2">
           {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
         </div>
-        <div className="px-2 pb-3">
+        <div className="px-2 pb-3 mt-2">
           <InteractiveLink href={`/products/${productPreview.handle}`}>
             Quick View
           </InteractiveLink>

@@ -16,7 +16,7 @@ const InteractiveLink = ({
 }: InteractiveLinkProps) => {
   return (
     <LocalizedClientLink
-      className="flex justify-center items-center border py-3 px-8 text-white bg-red-500 hover:bg-transparent hover:text-black hover:border hover:border-black group font-light text-center tracing-widest"
+      className="flex justify-center items-center border py-2 px-6 text-white bg-black hover:bg-transparent hover:text-black hover:border hover:border-black group font-light text-center tracing-widest"
       href={href}
       onClick={onClick}
       {...props}
