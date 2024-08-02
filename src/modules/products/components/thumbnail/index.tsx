@@ -31,7 +31,7 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
   return (
     <div
       className={clx(
-        "relative w-full overflow-hidden bg-ui-bg-subtle border-b shadow-elevation-card-rest group-hover:shadow-elevation-card-hover transition-shadow ease-in-out duration-150 ",
+        "relative w-full overflow-hidden bg-ui-bg-subtle transition-shadow ease-in-out duration-150 ",
         className,
         {
           "aspect-[7/10]": !isFeatured && size !== "square",

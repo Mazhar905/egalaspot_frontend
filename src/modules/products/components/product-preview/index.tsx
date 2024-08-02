@@ -37,7 +37,7 @@ export default async function ProductPreview({
   // const rowClass = itemsPerRow ? `lg:w-[${}]` : ""
 
   return (
-    <div className="flex-grow flex-shrink-0 basis-[calc(50%-1.5rem)] md:basis-[calc(33%-1.5rem)] lg:basis-[calc(25%-1.5rem)] max-w-[calc(25%-1.5rem) border justify-between">
+    <div className="flex-grow flex-shrink-0 basis-[calc(50%-1.5rem)] md:basis-[calc(33%-1.5rem)] lg:basis-[calc(25%-1.5rem)] max-w-[calc(25%-1.5rem) border justify-between bg-gray-200">
       <div className="flex flex-col justify-between h-full">
         <div className="txt-compact-medium">
           <Thumbnail
