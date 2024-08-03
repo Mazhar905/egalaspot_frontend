@@ -12,7 +12,6 @@ export default async function CollectionGrid({
   const filteredCollections = collections.filter(
     (collection) => collection.title === title
   )
-  console.log(filteredCollections)
 
   return (
     <>

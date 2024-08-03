@@ -8,6 +8,7 @@ import RefinementList from "@modules/store/components/refinement-list"
 import { SortOptions } from "@modules/store/components/refinement-list/sort-products"
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
+import ArchiveHeader from "@modules/store/components/archive-header"
 
 export default function CategoryTemplate({
   categories,
@@ -28,8 +29,15 @@ export default function CategoryTemplate({
   if (!category || !countryCode) notFound()
 
   return (
-    <div className="flex flex-col small:flex-row small:items-start py-6 content-container" data-testid="category-container">
-      <RefinementList sortBy={sortBy || "created_at"} data-testid="sort-by-container" />
+    <div
+      className="flex flex-col small:items-start py-6 content-container"
+      data-testid="category-container"
+    >
+      <ArchiveHeader
+        title={category.name}
+        sortBy={sortBy || "created_at"}
+        data-testid="sort-by-container"
+      />
       <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
@@ -45,7 +53,6 @@ export default function CategoryTemplate({
                 /
               </span>
             ))}
-          <h1 data-testid="category-page-title">{category.name}</h1>
         </div>
         {category.description && (
           <div className="mb-8 text-base-regular">

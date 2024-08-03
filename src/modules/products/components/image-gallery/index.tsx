@@ -1,39 +1,59 @@
-import { Image as MedusaImage } from "@medusajs/medusa"
-import { Container } from "@medusajs/ui"
-import Image from "next/image"
+"use client"
+import { useState } from 'react';
+import { Image as MedusaImage } from "@medusajs/medusa";
+import { Container } from "@medusajs/ui";
+import Image from "next/image";
 
 type ImageGalleryProps = {
-  images: MedusaImage[]
-}
+  images: MedusaImage[];
+};
 
 const ImageGallery = ({ images }: ImageGalleryProps) => {
+  const [mainImage, setMainImage] = useState<MedusaImage>(images[0]);
+  console.log(images)
+
   return (
-    <div className="flex items-start relative">
-      <div className="flex flex-col flex-1 small:mx-16 gap-y-4">
-        {images.map((image, index) => {
-          return (
-            <Container
-              key={image.id}
-              className="relative aspect-[29/34] w-full overflow-hidden bg-ui-bg-subtle"
-              id={image.id}
-            >
-              <Image
-                src={image.url}
-                priority={index <= 2 ? true : false}
-                className="absolute inset-0 rounded-rounded"
-                alt={`Product image ${index + 1}`}
-                fill
-                sizes="(max-width: 576px) 280px, (max-width: 768px) 360px, (max-width: 992px) 480px, 800px"
-                style={{
-                  objectFit: "cover",
-                }}
-              />
-            </Container>
-          )
-        })}
+    <div className="flex flex-col items-center relative">
+      <Container
+        className="relative aspect-[29/34] w-full max-w-xl overflow-hidden bg-ui-bg-subtle mb-4"
+        id={mainImage.id}
+      >
+        <img src={mainImage.url} alt="Main Product Image" height={500}/>
+        {/* <Image
+          src={mainImage.url}
+          priority
+          className="absolute inset-0 rounded-rounded"
+          alt={`Main product image`}
+          fill
+          style={{
+            objectFit: "cover",
+          }}
+        /> */}
+      </Container>
+      <div className="flex flex-wrap justify-start gap-4">
+        {images.map((image, index) => (
+          <Container
+            key={image.id}
+            className="relative aspect-[29/34] w-24 h-24 overflow-hidden bg-ui-bg-subtle cursor-pointer"
+            id={image.id}
+            onClick={() => setMainImage(image)}
+          >
+            <img src={image.url} alt={`Product image ${index + 1}`} />
+            {/* <Image
+              src={image.url}
+              priority={index <= 2 ? true : false}
+              className="absolute inset-0 rounded-rounded"
+              alt={`Product image ${index + 1}`}
+              fill
+              style={{
+                objectFit: "cover",
+              }}
+            /> */}
+          </Container>
+        ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ImageGallery
+export default ImageGallery;

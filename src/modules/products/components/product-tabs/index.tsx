@@ -1,19 +1,23 @@
 "use client"
-
 import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
-
 import Back from "@modules/common/icons/back"
 import FastDelivery from "@modules/common/icons/fast-delivery"
 import Refresh from "@modules/common/icons/refresh"
-
 import Accordion from "./accordion"
+import React from "react"
+import { Tabs, Tab, Card, CardBody, Switch } from "@nextui-org/react"
 
 type ProductTabsProps = {
   product: PricedProduct
 }
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
+  const [selected, setSelected] = React.useState("Description")
   const tabs = [
+    {
+      label: "Description",
+      component: <ShippingInfoTab />,
+    },
     {
       label: "Product Information",
       component: <ProductInfoTab product={product} />,
@@ -25,26 +29,37 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
   ]
 
   return (
-    <div className="w-full">
-      <Accordion type="multiple">
+    <div className="flex flex-col w-full">
+      <Tabs
+        aria-label="Options"
+        selectedKey={selected}
+        onSelectionChange={setSelected}
+        className="w-full"
+      >
         {tabs.map((tab, i) => (
-          <Accordion.Item
-            key={i}
+          <Tab
+            key={tab.label}
             title={tab.label}
-            headingSize="medium"
+            className={`px-4 py-2 cursor-pointer text-lg font-bold ${
+              selected === tab.label
+                ? "text-blue-600 border-b-2 border-blue-600"
+                : "text-gray-600"
+            }`}
             value={tab.label}
           >
-            {tab.component}
-          </Accordion.Item>
+            <Card className="border border-gray-300 rounded-md mt-4">
+              <CardBody className="p-4">{tab.component}</CardBody>
+            </Card>
+          </Tab>
         ))}
-      </Accordion>
+      </Tabs>
     </div>
   )
 }
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-sm py-8">
       <div className="grid grid-cols-2 gap-x-8">
         <div className="flex flex-col gap-y-4">
           <div>
@@ -78,6 +93,11 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
       {product.tags?.length ? (
         <div>
           <span className="font-semibold">Tags</span>
+          {product.tags.map((tag) => (
+            <span key={tag} className="ml-2">
+              {tag}
+            </span>
+          ))}
         </div>
       ) : null}
     </div>
@@ -86,14 +106,14 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
 
 const ShippingInfoTab = () => {
   return (
-    <div className="text-small-regular py-8">
+    <div className="text-sm py-8">
       <div className="grid grid-cols-1 gap-y-8">
         <div className="flex items-start gap-x-2">
           <FastDelivery />
           <div>
             <span className="font-semibold">Fast delivery</span>
             <p className="max-w-sm">
-              Your package will arrive in 3-5 business days at your pick up
+              Your package will arrive in 3-5 business days at your pick-up
               location or in the comfort of your home.
             </p>
           </div>

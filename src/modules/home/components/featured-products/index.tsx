@@ -12,7 +12,7 @@ export default async function FeaturedProducts({
 }) {
   return collections.map((collection) => (
     <li key={collection.id}>
-      <ProductRail collection={collection} region={region} />
+      <ProductRail collection={collection} region={region} itemsPerRow={undefined} limit={undefined} />
     </li>
   ))
 }
