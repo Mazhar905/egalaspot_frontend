@@ -34,11 +34,11 @@ const Thumbnail: React.FC<ThumbnailProps> = ({
         "relative w-full overflow-hidden bg-ui-bg-subtle transition-shadow ease-in-out duration-150 ",
         className,
         {
-          "aspect-[7/10]": !isFeatured && size !== "square",
-          "w-[180px]": size === "small",
-          "w-[290px]": size === "medium",
-          "w-[440px]": size === "large",
-          "w-full": size === "full",
+          "aspect-[3/2": !isFeatured && size !== "square",
+          // "w-[180px]": size === "small",
+          // "w-[290px]": size === "medium",
+          // "w-[440px]": size === "large",
+          // "w-full": size === "full",
         }
       )}
       data-testid={dataTestid}
@@ -56,7 +56,7 @@ const ImageOrPlaceholder = ({
 }: Pick<ThumbnailProps, "size"> & { image?: string }) => {
   return image ? (
     <>
-      <img src={image} alt="Thumbnail" className="w-full h-full" />
+      <img src={image} alt="Thumbnail" className="h-80 w-72 object-cover rounded-t-xl"  />
 
       {/* <Image
         src={image}

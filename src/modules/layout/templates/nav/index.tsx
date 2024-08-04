@@ -17,18 +17,13 @@ export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
   const { collections } = await getCollectionsList(0, 6)
   const { product_categories } = await getCategoriesList(0, 12)
+  console.log(product_categories)
   return (
     <>
       <TopBar />
       <div className="sticky top-0 inset-x-0 z-50 items-center">
         <header className="flex flex-col items-center mx-auto duration-200 border-b bg-white ">
           <nav className="content-container w-full txt-xsmall-plus text-ui-fg-subtle  flex items-center justify-between h-[100px] text-small-regular">
-            {/* <div className="flex-1 basis-0 h-full flex items-center">
-              <div className="h-full">
-                <SideMenu regions={regions} />
-              </div>
-            </div> */}
-
             <div className="flex items-center h-full">
               <LocalizedClientLink
                 href="/"
@@ -80,9 +75,14 @@ export default async function Nav() {
                   <CartButton />
                 </Suspense>
               </div>
+              <div className="flex-1 md:hidden basis-0 h-full flex items-center">
+                <div className="h-full">
+                  <SideMenu regions={regions} />
+                </div>
+              </div>
             </div>
           </nav>
-          <div className="flex justify-center items-center h-[40px] w-full">
+          <div className="hidden md:flex justify-center items-center h-[40px] w-full">
             {product_categories && product_categories.length > 0 && (
               <div className="flex flex-col gap-y-2">
                 <ul

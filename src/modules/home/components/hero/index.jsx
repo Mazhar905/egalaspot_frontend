@@ -48,7 +48,7 @@ const SlideShow = () => {
               layout="responsive"
               src={slider.image}
               width={1144}
-              height={600}
+              height={400}
               alt={"some name"}
             />
           </div>

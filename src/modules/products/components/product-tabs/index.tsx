@@ -1,49 +1,39 @@
 "use client"
-import { PricedProduct } from "@medusajs/medusa/dist/types/pricing"
-import Back from "@modules/common/icons/back"
-import FastDelivery from "@modules/common/icons/fast-delivery"
-import Refresh from "@modules/common/icons/refresh"
-import Accordion from "./accordion"
-import React from "react"
-import { Tabs, Tab, Card, CardBody, Switch } from "@nextui-org/react"
+import { PricedProduct } from "@medusajs/medusa/dist/types/pricing";
+import Back from "@modules/common/icons/back";
+import FastDelivery from "@modules/common/icons/fast-delivery";
+import Refresh from "@modules/common/icons/refresh";
+import Accordion from "./accordion";
+import React from "react";
+import { Tabs, Tab, Card, CardBody } from "@nextui-org/react";
 
 type ProductTabsProps = {
-  product: PricedProduct
-}
+  product: PricedProduct;
+};
 
 const ProductTabs = ({ product }: ProductTabsProps) => {
-  const [selected, setSelected] = React.useState("Description")
+  const [selected, setSelected] = React.useState("Description");
+
   const tabs = [
-    {
-      label: "Description",
-      component: <ShippingInfoTab />,
-    },
-    {
-      label: "Product Information",
-      component: <ProductInfoTab product={product} />,
-    },
-    {
-      label: "Shipping & Returns",
-      component: <ShippingInfoTab />,
-    },
-  ]
+    { label: "Description", component: "Description" },
+    { label: "Product Information", component: <ProductInfoTab product={product} /> },
+    { label: "Shipping & Returns", component: <ShippingInfoTab /> },
+  ];
 
   return (
-    <div className="flex flex-col w-full">
+    <div className="flex flex-col w-full mt-5">
       <Tabs
         aria-label="Options"
         selectedKey={selected}
         onSelectionChange={setSelected}
         className="w-full"
       >
-        {tabs.map((tab, i) => (
+        {tabs.map((tab) => (
           <Tab
             key={tab.label}
             title={tab.label}
-            className={`px-4 py-2 cursor-pointer text-lg font-bold ${
-              selected === tab.label
-                ? "text-blue-600 border-b-2 border-blue-600"
-                : "text-gray-600"
+            className={`px-4 py-2 cursor-pointer text-lg font-normal ${
+              selected === tab.label && "text-gray-600"
             }`}
             value={tab.label}
           >
@@ -54,8 +44,8 @@ const ProductTabs = ({ product }: ProductTabsProps) => {
         ))}
       </Tabs>
     </div>
-  )
-}
+  );
+};
 
 const ProductInfoTab = ({ product }: ProductTabsProps) => {
   return (
@@ -64,15 +54,15 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
         <div className="flex flex-col gap-y-4">
           <div>
             <span className="font-semibold">Material</span>
-            <p>{product.material ? product.material : "-"}</p>
+            <p>{product.material || "-"}</p>
           </div>
           <div>
             <span className="font-semibold">Country of origin</span>
-            <p>{product.origin_country ? product.origin_country : "-"}</p>
+            <p>{product.origin_country || "-"}</p>
           </div>
           <div>
             <span className="font-semibold">Type</span>
-            <p>{product.type ? product.type.value : "-"}</p>
+            <p>{product.type?.value || "-"}</p>
           </div>
         </div>
         <div className="flex flex-col gap-y-4">
@@ -83,14 +73,14 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
           <div>
             <span className="font-semibold">Dimensions</span>
             <p>
-              {product.length && product.width && product.height
-                ? `${product.length}L x ${product.width}W x ${product.height}H`
+              {product['length'] && product.width && product.height
+                ? `${product['length']} L x ${product.width}W x ${product.height}H`
                 : "-"}
             </p>
           </div>
         </div>
       </div>
-      {product.tags?.length ? (
+      {/* {product.tags?.length ? (
         <div>
           <span className="font-semibold">Tags</span>
           {product.tags.map((tag) => (
@@ -99,10 +89,10 @@ const ProductInfoTab = ({ product }: ProductTabsProps) => {
             </span>
           ))}
         </div>
-      ) : null}
+      ) : null} */}
     </div>
-  )
-}
+  );
+};
 
 const ShippingInfoTab = () => {
   return (
@@ -141,7 +131,7 @@ const ShippingInfoTab = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductTabs
+export default ProductTabs;

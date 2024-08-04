@@ -84,31 +84,15 @@ const getPricedProductByHandle = async (handle: string, region: Region) => {
 }
 
 export default async function ProductPage({ params }: Props) {
-  console.log("hwllo world")
-
   const region = await getRegion(params.countryCode)
-  console.log(region)
-
   if (!region) {
-  console.log("hwllo world")
-  
     notFound()
   }
   const pricedProduct = await getPricedProductByHandle(params.handle, region)
-  // console.log(pricedProduct)
-  // console.log("length of the ")
-  // console.log(typeof(pricedProduct))
-  // console.log(pricedProduct?.length)
-  // Get the length of the object
-const objectLength = Object.keys(pricedProduct).length;
-
-console.log(objectLength); // Output: 3
   if (!pricedProduct) {
     notFound()
   }
-
   return (
     <ProductTemplate product={pricedProduct} region={region} countryCode={params.countryCode}/>
-    // <h1>Hellowd</h1>
   )
 }

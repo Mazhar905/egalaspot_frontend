@@ -18,7 +18,8 @@ export default function ProductRail({ collection, region, itemsPerRow, limit }) 
           {collection.title}
         </h2>
       </div>
-      <div className="flex flex-wrap justify-between gap-y-4 gap-x-1 small:gap-y-6">
+      <div className="w-fit mx-auto grid grid-cols-1 lg:grid-cols-4 md:grid-cols-4 justify-items-center justify-center gap-y-20 gap-x-14 mt-10 mb-5">
+
         {limitedProducts.map((product) => (
             <ProductPreview
               key={product.id}

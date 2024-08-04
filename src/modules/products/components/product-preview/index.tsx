@@ -37,32 +37,35 @@ export default async function ProductPreview({
   // const rowClass = itemsPerRow ? `lg:w-[${}]` : ""
 
   return (
-    <div className="flex-grow flex-shrink-0 basis-[calc(50%-1.5rem)] md:basis-[calc(33%-1.5rem)] lg:basis-[calc(25%-1.5rem)] max-w-[calc(25%-1.5rem) border justify-between bg-gray-200">
-      <div className="flex flex-col justify-between h-full">
-        <div className="txt-compact-medium">
-          <Thumbnail
-            thumbnail={productPreview.thumbnail}
-            size="full"
-            isFeatured={isFeatured}
-            link={`/products/${productPreview.handle}`}
-          />
-          <Link href={`/products/${productPreview.handle}`}>
-            <Text
-              className="font-light hover:font-normal text-lg px-2 py-2"
-              data-testid="product-title"
-            >
-              {productPreview.title}
-            </Text>
-          </Link>
-        </div>
-        <div className="flex justify-start gap-x-2  px-2">
+    // <div className="flex-grow flex-shrink-0 basis-[calc(50%-1.5rem)] md:basis-[calc(33%-1.5rem)] lg:basis-[calc(25%-1.5rem)] max-w-[calc(25%-1.5rem) border justify-between bg-gray-200">
+    //   <div className="flex flex-col justify-between h-full">
+    <div className="w-72 bg-white shadow-md border rounded-xl duration-500 hover:scale-105 hover:shadow-xl">
+      <Thumbnail
+        thumbnail={productPreview.thumbnail}
+        size="square"
+        isFeatured={isFeatured}
+        link={`/products/${productPreview.handle}`}
+      />
+      <div className="px-4 py-3 w-72">
+        <span className="text-gray-400 mr-3 capitalize text-xs">brand</span>
+
+        <Link href={`/products/${productPreview.handle}`}>
+          <Text
+            className="text-sm font-bold text-black truncate block capitalize"
+            data-testid="product-title"
+          >
+            {productPreview.title}
+          </Text>
+        </Link>
+        <div className="flex justify-start gap-x-2">
           {cheapestPrice && <PreviewPrice price={cheapestPrice} />}
         </div>
-        <div className="px-2 pb-3 mt-2">
-          <InteractiveLink href={`/products/${productPreview.handle}`}>
-            Quick View
-          </InteractiveLink>
-        </div>
+      </div>
+
+      <div className="px-2 pb-3 mt-2">
+        <InteractiveLink href={`/products/${productPreview.handle}`}>
+          Quick View
+        </InteractiveLink>
       </div>
     </div>
   )
