@@ -1,4 +1,5 @@
 // import { usePathname } from "next/navigation"
+import { TopMenuItems } from "@lib/menuItem"
 import Link from "next/link"
 import { FaFacebookF, FaInstagram } from "react-icons/fa"
 
@@ -26,16 +27,17 @@ const Topbar = () => {
           </li>
         </ul>
         <ul className="flex items-center space-x-4">
-          <li className="inline-flex items-center">
-            <Link href="/about" className="text-xs">
-              About us
-            </Link>
-          </li>
-          <li className="inline-flex items-center">
-            <Link href="/policy" className="text-xs">
-              Our Policy
-            </Link>
-          </li>
+          <ul className="flex items-center space-x-4">
+            {Object.entries(TopMenuItems).map(([key, value]) => {
+              return (
+                <li key={key} className="inline-flex items-center">
+                  <Link href={value} className="text-xs">
+                    {key}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
         </ul>
       </div>
     </div>

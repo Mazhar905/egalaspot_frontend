@@ -11,12 +11,12 @@ import logo from "../../../../../public/logo.png" // Note the path should be fro
 import { IoCartOutline } from "react-icons/io5"
 import TopBar from "./TopBar"
 import { IoMdPerson } from "react-icons/io"
-import { SearchBox } from "react-instantsearch-hooks-web/dist/es/ui/SearchBox"
+// import { SearchBox } from "react-instantsearch-hooks-web/dist/es/ui/SearchBox"
 import SearchModal from "@modules/search/templates/search-modal"
 export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
   const { collections } = await getCollectionsList(0, 6)
-  const { product_categories } = await getCategoriesList(0, 12)
+  const { product_categories } = await getCategoriesList(0, 100)
   console.log(product_categories)
   return (
     <>
@@ -83,29 +83,51 @@ export default async function Nav() {
             </div>
           </nav>
           <div className="hidden md:flex justify-center items-center h-[40px] w-full">
-            {product_categories && product_categories.length > 0 && (
-              <div className="flex flex-col gap-y-2">
-                <ul
-                  className={clx("flex gap-6 text-sm font-bold", {
-                    "grid-cols-2": (product_categories?.length || 0) > 3,
-                  })}
-                >
-                  {product_categories?.map((c) => (
-                    <li key={c.id}>
-                      <LocalizedClientLink
-                        className="hover:text-ui-fg-base"
-                        href={`/categories/${c.handle}`}
-                      >
-                        {c.name}
-                      </LocalizedClientLink>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+            <CategoryMenu product_categories={product_categories} />;
           </div>
         </header>
       </div>
     </>
   )
 }
+
+const CategoryMenu = ({ product_categories }) => {
+  const parentCategories = product_categories.filter(
+    (category) => category.parent_category_id === null
+  );
+  console.log(parentCategories)
+  return (
+    parentCategories && parentCategories.length > 0 && (
+      <div className="flex flex-col gap-y-2">
+        <ul className={clx("flex flex-col md:flex-row gap-6 text-sm font-bold", {
+          "grid-cols-2": (product_categories?.length || 0) > 3,
+        })}>
+          {parentCategories.map((category) => (
+            <li key={category.id} className="relative group">
+              <LocalizedClientLink
+                className="hover:text-ui-fg-base"
+                href={`/categories/${category.handle}`}
+              >
+                {category.name}
+              </LocalizedClientLink>
+              {category.category_children.length > 0 && (
+                <ul className="absolute left-0 top-full mt-1 hidden group-hover:block bg-white border border-gray-200 shadow-lg rounded-md z-10">
+                  {category.category_children.map((child) => (
+                    <li key={child.id} className="px-4 py-2 hover:bg-gray-100">
+                      <LocalizedClientLink
+                        className="block w-full text-left"
+                        href={`/categories/${child.handle}`}
+                      >
+                        {child.name}
+                      </LocalizedClientLink>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )
+  );
+};
