@@ -27,6 +27,7 @@ import threadImage from "../../../../public/threadfast-apparel-wholesale.webp"
 import americanImage from "../../../../public/american-apparel-wholesale.jpg"
 import glidanlImage from "../../../../public/wholesale-clothing-gildan.png"
 import hanesImage from "../../../../public/wholesale-hanes-clothing.jpg"
+import CategoryTemplate from "@modules/categories/templates"
 
 export const metadata = {
   title: "EgalaSpot",
@@ -95,25 +96,19 @@ export default async function Home({ params: { countryCode } }) {
     category6,
     category7,
     category8,
-  ];
-  
+  ]
+
   const categories = product_categories.map((category, index) => ({
     id: category.id,
     name: category.name,
     link: category.handle,
     image: images[index],
-  }));
-  
+  }))
+
   return (
     <>
       <Hero />
-      <CollectionGrid
-        itemsPerRow={4}
-        limit={8}
-        title="Latest Products"
-        collections={collections}
-        region={region}
-      />
+      <CategoryGrid title="Latest Products" limit={8} region={region} />
       <div className="py-8 bg-gray-200">
         <div className="container mx-auto px-4">
           <h2 className="text-center text-3xl font-light tracking-wider hover:underline mb-8">
@@ -136,20 +131,8 @@ export default async function Home({ params: { countryCode } }) {
           </div>
         </div>
       </div>
-      <CollectionGrid
-        itemsPerRow={4}
-        limit={8}
-        title="Best Sellers"
-        collections={collections}
-        region={region}
-      />
-      <CollectionGrid
-        itemsPerRow={4}
-        limit={8}
-        title="Weekly Deals"
-        collections={collections}
-        region={region}
-      />
+      <CategoryGrid title="Best Sellers" limit={8} region={region} />
+      <CategoryGrid title="Weekly Deals" limit={8} region={region} />
       <div className="mx-auto px-4 py-8 bg-gray-200">
         <div className="container">
           <h2 className="text-center text-3xl font-light tracking-wider hover:underline mb-8">
@@ -178,5 +161,25 @@ export default async function Home({ params: { countryCode } }) {
         </div>
       </div>
     </>
+  )
+}
+
+function CategoryGrid({title, region, limit}) {
+  const handle = title.toLowerCase().replace(" ", "-")
+  return (
+    <div className="py-8">
+      <div className="container mx-auto px-4">
+        <h2 className="text-center text-3xl font-light tracking-wider hover:underline mb-8">
+          {title}
+        </h2>
+        <CategoryTemplate
+          sortBy={""}
+          page={""}
+          limit={limit}
+          countryCode={region}
+          categoryName={handle}
+        />
+      </div>
+    </div>
   )
 }

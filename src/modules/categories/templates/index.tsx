@@ -9,36 +9,45 @@ import { SortOptions } from "@modules/store/components/refinement-list/sort-prod
 import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ArchiveHeader from "@modules/store/components/archive-header"
+import { getCategoryByHandle } from "@lib/data"
+import { split } from "lodash"
 
-export default function CategoryTemplate({
-  categories,
+export default async function CategoryTemplate({
   sortBy,
   page,
   countryCode,
+  categoryName,
+  limit,
 }: {
-  categories: ProductCategoryWithChildren[]
   sortBy?: SortOptions
   page?: string
   countryCode: string
+  categoryName: string
+  limit?: number
 }) {
   const pageNumber = page ? parseInt(page) : 1
-
-  const category = categories[categories.length - 1]
-  const parents = categories.slice(0, categories.length - 1)
-
-  if (!category || !countryCode) notFound()
+  const name: string[] = categoryName.split(" ")
+  const { product_categories } = await getCategoryByHandle(name).then(
+    (product_categories) => product_categories
+  )
+  const category = product_categories[0]
+  // const category = categories[categories.length - 1]
+  // const parents = categories.slice(0, categories.length - 1)
+  if (sortBy && (!countryCode || !category)) notFound()
 
   return (
     <div
       className="flex flex-col small:items-start py-6 content-container"
       data-testid="category-container"
     >
-      <ArchiveHeader
-        title={category.name}
-        sortBy={sortBy || "created_at"}
-        data-testid="sort-by-container"
-      />
-      <div className="w-full">
+      {sortBy && (
+        <ArchiveHeader
+          title={category.name}
+          sortBy={sortBy || "created_at"}
+          data-testid="sort-by-container"
+        />
+      )}
+      {/* <div className="w-full">
         <div className="flex flex-row mb-8 text-2xl-semi gap-4">
           {parents &&
             parents.map((parent) => (
@@ -53,13 +62,13 @@ export default function CategoryTemplate({
                 /
               </span>
             ))}
-        </div>
-        {category.description && (
+        </div> */}
+      {/* {category.description && (
           <div className="mb-8 text-base-regular">
             <p>{category.description}</p>
           </div>
-        )}
-        {category.category_children && (
+        )} */}
+      {/* {category.category_children && (
           <div className="mb-8 text-base-large">
             <ul className="grid grid-cols-1 gap-2">
               {category.category_children?.map((c) => (
@@ -71,16 +80,16 @@ export default function CategoryTemplate({
               ))}
             </ul>
           </div>
-        )}
-        <Suspense fallback={<SkeletonProductGrid />}>
-          <PaginatedProducts
-            sortBy={sortBy || "created_at"}
-            page={pageNumber}
-            categoryId={category.id}
-            countryCode={countryCode}
-          />
-        </Suspense>
-      </div>
+        )} */}
+      <Suspense fallback={<SkeletonProductGrid />}>
+        <PaginatedProducts
+          sortBy={sortBy}
+          page={pageNumber}
+          categoryId={category.id}
+          countryCode={countryCode}
+          limit={limit}
+        />
+      </Suspense>
     </div>
   )
 }

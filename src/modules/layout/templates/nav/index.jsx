@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import { getCategoriesList, getCollectionsList } from "@lib/data"
-import { Text, clx } from "@medusajs/ui"
+import { clx } from "@medusajs/ui"
 
 import { listRegions } from "@lib/data"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
@@ -17,7 +17,6 @@ export default async function Nav() {
   const regions = await listRegions().then((regions) => regions)
   const { collections } = await getCollectionsList(0, 6)
   const { product_categories } = await getCategoriesList(0, 100)
-  console.log(product_categories)
   return (
     <>
       <TopBar />
@@ -95,7 +94,6 @@ const CategoryMenu = ({ product_categories }) => {
   const parentCategories = product_categories.filter(
     (category) => category.parent_category_id === null
   );
-  console.log(parentCategories)
   return (
     parentCategories && parentCategories.length > 0 && (
       <div className="flex flex-col gap-y-2">

@@ -3,7 +3,6 @@ import { TopMenuItems } from "@lib/menuItem"
 import Link from "next/link"
 import { FaFacebookF, FaInstagram } from "react-icons/fa"
 
-// Define the main component for the top navigation
 const Topbar = () => {
   //   const pathname = usePathname()
 
