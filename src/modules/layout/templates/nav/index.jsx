@@ -29,13 +29,14 @@ export default async function Nav() {
                 className="txt-compact-xlarge-plus hover:text-ui-fg-base uppercase"
                 data-testid="nav-store-link"
               >
-                <Image
+                {/* <Image
                   src={logo}
                   alt="logo"
                   className="md:w-[170px] w-36"
                   width={170}
                   height={80}
-                />
+                /> */}
+                <h1>EgalaSpot</h1>
               </LocalizedClientLink>
             </div>
             <div className="flex items-center h-full mx-auto w-[60%] justify-center">
@@ -93,13 +94,16 @@ export default async function Nav() {
 const CategoryMenu = ({ product_categories }) => {
   const parentCategories = product_categories.filter(
     (category) => category.parent_category_id === null
-  );
+  )
   return (
-    parentCategories && parentCategories.length > 0 && (
+    parentCategories &&
+    parentCategories.length > 0 && (
       <div className="flex flex-col gap-y-2">
-        <ul className={clx("flex flex-col md:flex-row gap-6 text-sm font-bold", {
-          "grid-cols-2": (product_categories?.length || 0) > 3,
-        })}>
+        <ul
+          className={clx("flex flex-col md:flex-row gap-6 text-md font-light capitalize", {
+            "grid-cols-2": (product_categories?.length || 0) > 3,
+          })}
+        >
           {parentCategories.map((category) => (
             <li key={category.id} className="relative group">
               <LocalizedClientLink
@@ -127,5 +131,5 @@ const CategoryMenu = ({ product_categories }) => {
         </ul>
       </div>
     )
-  );
-};
+  )
+}

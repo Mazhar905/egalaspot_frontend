@@ -14,14 +14,9 @@ import LocalizedClientLink from "@modules/common/components/localized-client-lin
 import Thumbnail from "@modules/products/components/thumbnail"
 import { IoCartOutline } from "react-icons/io5"
 
-const CartDropdown = ({
-  cart: cartState,
-}: {
-  cart?: Omit<Cart, "beforeInsert" | "afterLoad"> | null
-}) => {
-  const [activeTimer, setActiveTimer] = useState<NodeJS.Timer | undefined>(
-    undefined
-  )
+const CartDropdown = ({ cart }) => {
+  const [activeTimer, setActiveTimer] =
+    (useState < NodeJS.Timer) | (undefined > undefined)
   const [cartDropdownOpen, setCartDropdownOpen] = useState(false)
 
   const { countryCode } = useParams()
@@ -34,7 +29,7 @@ const CartDropdown = ({
       return acc + item.quantity
     }, 0) || 0
 
-  const itemRef = useRef<number>(totalItems || 0)
+  const itemRef = useRef < number > (totalItems || 0)
 
   const timedOpen = () => {
     open()
