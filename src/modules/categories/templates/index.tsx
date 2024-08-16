@@ -10,7 +10,6 @@ import PaginatedProducts from "@modules/store/templates/paginated-products"
 import LocalizedClientLink from "@modules/common/components/localized-client-link"
 import ArchiveHeader from "@modules/store/components/archive-header"
 import { getCategoryByHandle } from "@lib/data"
-import { split } from "lodash"
 
 export default async function CategoryTemplate({
   sortBy,
